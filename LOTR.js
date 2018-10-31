@@ -15,11 +15,11 @@
 'use strict';
 
 
-function createCharacter(name, nickname, race, origin, attack, defense){
+function createCharacter(name, nickname, race, origin, attack, defense, weapon){
   return {
-    name, nickname, race, origin, attack, defense,
+    name, nickname, race, origin, attack, defense, weapon,
     describe: function(){
-      return `${this.name} is a ${this.race} from ${this.origin}`;
+      return `${this.name} is a ${this.race} from ${this.origin} who uses ${this.weapon}`;
     },
     evaluateFight: function(character){
       if (character.attack - this.attack > 0){
@@ -41,12 +41,35 @@ function createCharacter(name, nickname, race, origin, attack, defense){
 // console.log(gandalf.evaluateFight(bilbo));
 // console.log(bilbo);
 
-const characters = [createCharacter('Arwen Undomiel', 'arwen', 'Half Elf', 'Rivendell', 5, 5), createCharacter('Gandalf the White', 'gandalf', 'Wizard', 'Middle Earth', 10, 6), createCharacter('Legolas', 'legolas', 'Elf', 'Woodland Realm', 8, 5), createCharacter('Aragorn son of Arathorn', 'aragorn', 'Man', 'Dunnedain', 6, 8), createCharacter('Frodo Baggins', 'frodo', 'Hobbit', 'The Shire', 3, 2), createCharacter('Bilbo Baggins', 'bilbo', 'Hobbit', 'The Shire', 2, 1), ]
+const characters =
+[createCharacter('Arwen Undomiel', 'arwen', 'Half Elf', 'Rivendell', 5, 5, 'the Hadhafang'),
+createCharacter('Gandalf the White', 'gandalf', 'Wizard', 'Middle Earth', 10, 6,'a wizard staff'),
+createCharacter('Legolas', 'legolas', 'Elf', 'Woodland Realm', 8, 5, 'a Bow and Arrow'),
+createCharacter('Aragorn son of Arathorn', 'aragorn', 'Man', 'Dunnedain', 6, 8, 'the Anduril'),
+createCharacter('Frodo Baggins', 'frodo', 'Hobbit', 'The Shire', 3, 2, 'a String and Barrow Blade'),
+createCharacter('Bilbo Baggins', 'bilbo', 'Hobbit', 'The Shire', 2, 1, 'the Ring'), ]
 
-//console.log(characters);
+
 
 function findAragorn(arr) {
   return arr.find(obj => obj.nickname === 'aragorn');
 }
 
-console.log(findAragorn(characters));
+function filterHobbit(arr) {
+
+  return arr.filter(obj => obj.race === 'Hobbit');
+ 
+}
+
+function filterAttackAboveFive(arr) {
+
+  return arr.filter(obj => obj.attack > 5);
+
+}
+
+
+
+
+//console.log(filterAttackAboveFive(characters));
+
+console.log(characters[1].describe());
